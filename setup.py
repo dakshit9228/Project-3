@@ -2,13 +2,14 @@ from distutils.core import setup
 
 setup(
     name='building_analysis',
-    version='0.2.1',
+    version='0.0.2',
     description='Classes for technical analysis of building dataset.',
     author='Dakshit',
-    author_email='',
+    author_email='dgolakiy@mail.yu.edu',
     license='MIT',
-    url='',
-    packages=['building_analysis'],
+    url='https://github.com/dakshit9228/Project-3',
+    packages=find_packages(where="my_package"),
+    package_dir={"": "my_package"},
     install_requires=[
         'matplotlib>=3.0.2',
         'numpy>=1.15.2',

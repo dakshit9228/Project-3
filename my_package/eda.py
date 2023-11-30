@@ -1,3 +1,8 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
 class BuildingDatasetEDA:
     """
     A simplified class for performing basic Exploratory Data Analysis (EDA) on the building dataset.
@@ -33,7 +38,7 @@ class BuildingDatasetEDA:
         """
         if column_name in self.dataset.columns:
             value_counts = self.dataset[column_name].value_counts()
-            value_counts.plot(kind='bar')
+            value_counts.plot(kind="bar")
             plt.title(f"Bar Chart of {column_name}")
             plt.xlabel(column_name)
             plt.ylabel("Count")
@@ -72,21 +77,25 @@ class BuildingDatasetEDA:
             plt.ylabel(column_y)
             plt.show()
         else:
-            print(f"One or both columns '{column_x}', '{column_y}' not found in the dataset.")
+            print(
+                f"One or both columns '{column_x}', '{column_y}' not found in the dataset."
+            )
 
     def plot_pie_chart(self, column_name):
+        """Plots a pie chart for the specified column in the dataset, if it exists."""
         if column_name in self.dataset.columns:
             pie_data = self.dataset[column_name].value_counts()
-            pie_data.plot(kind='pie', autopct='%1.1f%%')
+            pie_data.plot(kind="pie", autopct="%1.1f%%")
             plt.title(f"Pie Chart of {column_name}")
-            plt.ylabel('')  # Hide the y-label
+            plt.ylabel("")  # Hide the y-label
             plt.show()
         else:
             print(f"Column '{column_name}' not found in the dataset.")
 
     def plot_line_graph(self, column_name):
+        """Generates a line graph for the chosen column in the dataset, if available."""
         if column_name in self.dataset.columns:
-            self.dataset[column_name].plot(kind='line')
+            self.dataset[column_name].plot(kind="line")
             plt.title(f"Line Graph of {column_name}")
             plt.ylabel(column_name)
             plt.show()
@@ -94,6 +103,7 @@ class BuildingDatasetEDA:
             print(f"Column '{column_name}' not found in the dataset.")
 
     def plot_countplot(self, column_name):
+        """Creates a count plot for a given column in the dataset, conditional on its presence."""
         if column_name in self.dataset.columns:
             sns.countplot(x=column_name, data=self.dataset)
             plt.title(f"Count Plot of {column_name}")
@@ -103,8 +113,8 @@ class BuildingDatasetEDA:
             print(f"Column '{column_name}' not found in the dataset.")
 
     def plot_correlation_heatmap(self):
+        """Displays a heatmap representing the correlation matrix of the dataset."""
         correlation_matrix = self.dataset.corr()
-        sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+        sns.heatmap(correlation_matrix, annot=True, cmap="coolwarm")
         plt.title("Correlation Heatmap")
         plt.show()
-
